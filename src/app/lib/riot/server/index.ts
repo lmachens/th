@@ -28,10 +28,28 @@ export const getSummoner = async ({ platformId, summonerName }) => {
   }
 };
 
+const platformIdToRegion = {
+  BR1: 'americas',
+  EUN1: 'europe',
+  EUW1: 'europe',
+  JP1: 'asia',
+  KR: 'asia',
+  LA1: 'americas',
+  LA2: 'americas',
+  NA1: 'americas',
+  OC1: 'americas',
+  RU: 'europe',
+  TR1: 'europe',
+};
+
 export const getMatch = async ({ platformId, matchId }) => {
   try {
+    const region = platformIdToRegion[platformId];
+    if (!region) {
+      throw new Error(`Unknown region for platformId ${platformId}`);
+    }
     const match = await requestRiot<Match>(
-      `https://${platformId}.api.riotgames.com/lol/match/v4/matches/${matchId}`
+      `https://${region}.api.riotgames.com/lol/match/v5/matches/${platformId}_${matchId}`
     );
     return match;
   } catch (error) {
@@ -50,8 +68,12 @@ export const getTimeline = async ({
   matchId: number;
 }): Promise<MatchTimeline> => {
   try {
+    const region = platformIdToRegion[platformId];
+    if (!region) {
+      throw new Error(`Unknown region for platformId ${platformId}`);
+    }
     const timeline = await requestRiot<MatchTimeline>(
-      `https://${platformId}.api.riotgames.com/lol/match/v4/timelines/by-match/${matchId}`
+      `https://${region}.api.riotgames.com/lol/match/v5/matches/${platformId}_${matchId}/timeline`
     );
     return timeline;
   } catch (error) {
@@ -62,7 +84,10 @@ export const getTimeline = async ({
   }
 };
 
-export const getMatchAndTimeline = ({ platformId, matchId }) =>
+export const getMatchAndTimeline = ({
+  platformId,
+  matchId,
+}): Promise<[Match, MatchTimeline]> =>
   Promise.all([
     getMatch({
       platformId,
@@ -96,18 +121,17 @@ export const getTeammateAccounts = async (
   participant: Participant
 ) => {
   const teammates = getTeammates(match, participant);
-  const teammateSummonerNames = match.participantIdentities
-    .filter((participantIdentity) =>
+  const teammateSummonerNames = match.info.participants
+    .filter((participant) =>
       teammates.some(
-        (teammate) =>
-          teammate.participantId === participantIdentity.participantId
+        (teammate) => teammate.participantId === participant.participantId
       )
     )
-    .map((participantIdentity) => participantIdentity.player.summonerName);
+    .map((participant) => participant.summonerName);
 
   const Accounts = await getAccountsCollection();
   const teammateAccounts = await Accounts.find({
-    'summoner.platformId': match.platformId,
+    'summoner.platformId': match.info.platformId,
     'summoner.name': { $in: teammateSummonerNames },
   }).toArray();
   return teammateAccounts;

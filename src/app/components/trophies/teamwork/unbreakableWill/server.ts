@@ -5,21 +5,21 @@ import { getTeammates } from '../../../../lib/riot/helpers';
 const unbreakableWill: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    if (participant.timeline.role !== 'DUO_SUPPORT') {
+    if (participant.teamPosition !== 'UTILITY') {
       return 0;
     }
 
     const team = getTeammates(match, participant);
     const maxAssists = Math.max(
-      ...team.map((participant) => participant.stats.assists)
+      ...team.map((participant) => participant.assists)
     );
     const maxDamageSelfMitigated = Math.max(
-      ...team.map((participant) => participant.stats.damageSelfMitigated)
+      ...team.map((participant) => participant.damageSelfMitigated)
     );
 
     return Number(
-      participant.stats.assists >= maxAssists &&
-        participant.stats.damageSelfMitigated >= maxDamageSelfMitigated
+      participant.assists >= maxAssists &&
+        participant.damageSelfMitigated >= maxDamageSelfMitigated
     );
   },
 };

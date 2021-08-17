@@ -4,7 +4,7 @@ import base from './base';
 const uncounterable: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.trueDamageDealtToChampions / 5000;
+    return participant.trueDamageDealtToChampions / 5000;
   },
 };
 

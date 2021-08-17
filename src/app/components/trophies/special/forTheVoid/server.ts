@@ -26,10 +26,7 @@ const forTheVoid: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'forTheVoid');
-    if (
-      !voidChampionIds.includes(participant.championId) ||
-      !participant.stats.win
-    ) {
+    if (!voidChampionIds.includes(participant.championId) || !participant.win) {
       return trophyProgress;
     }
     return 1 / 3 + trophyProgress;

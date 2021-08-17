@@ -4,7 +4,7 @@ import base from './base';
 const explosiveCharge: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.damageDealtToTurrets / 10000;
+    return participant.damageDealtToTurrets / 10000;
   },
 };
 

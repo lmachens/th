@@ -4,7 +4,7 @@ import base from './base';
 const pentaKill: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.pentaKills;
+    return participant.pentaKills;
   },
 };
 

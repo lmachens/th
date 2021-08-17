@@ -10,10 +10,10 @@ const bloodBrothers: TrophyServer = {
         if (
           event.type !== 'CHAMPION_KILL' ||
           (event.killerId !== participant.participantId &&
-            !event.assistingParticipantIds.includes(
+            !event.assistingParticipantIds?.includes(
               participant.participantId
             )) ||
-          event.assistingParticipantIds.length !== 1
+          event.assistingParticipantIds?.length !== 1
         ) {
           return duoKills;
         }
@@ -29,7 +29,7 @@ const bloodBrothers: TrophyServer = {
       {}
     );
     const duoKills = Math.max(...Object.values(duoKillsEvents), 0);
-    if (match.queueId === ARAM_HOWLING_ABYSS) {
+    if (match.info.queueId === ARAM_HOWLING_ABYSS) {
       return duoKills / 5;
     }
     return duoKills / 7;

@@ -5,7 +5,7 @@ import { getTrophyProgressDetails } from '../../../../lib/accounts/helpers';
 const oneTrickPony: TrophyServer = {
   ...base,
   checkProgress: ({ account, participant }) => {
-    if (!participant.stats.win) {
+    if (!participant.win) {
       return {
         progress: 0,
         details: [],

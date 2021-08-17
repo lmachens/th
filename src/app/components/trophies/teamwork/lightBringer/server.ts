@@ -6,7 +6,7 @@ const lightBringer: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'lightBringer');
-    return participant.stats.wardsPlaced / 25 + trophyProgress;
+    return participant.wardsPlaced / 25 + trophyProgress;
   },
 };
 

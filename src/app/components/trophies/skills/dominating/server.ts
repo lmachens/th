@@ -4,7 +4,7 @@ import base from './base';
 const dominating: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.largestKillingSpree / 6;
+    return participant.largestKillingSpree / 6;
   },
 };
 

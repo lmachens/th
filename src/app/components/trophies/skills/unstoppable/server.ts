@@ -4,7 +4,7 @@ import base from './base';
 const unstoppable: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.largestKillingSpree / 5;
+    return participant.largestKillingSpree / 5;
   },
 };
 

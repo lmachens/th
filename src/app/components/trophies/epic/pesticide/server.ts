@@ -5,9 +5,7 @@ const pesticide: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
     return (
-      (participant.stats.totalMinionsKilled +
-        participant.stats.neutralMinionsKilled) /
-      380
+      (participant.totalMinionsKilled + participant.neutralMinionsKilled) / 380
     );
   },
 };

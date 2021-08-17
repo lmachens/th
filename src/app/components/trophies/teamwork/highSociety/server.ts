@@ -6,7 +6,7 @@ const highSociety: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'highSociety');
-    return participant.stats.assists / 20 + trophyProgress;
+    return participant.assists / 20 + trophyProgress;
   },
 };
 

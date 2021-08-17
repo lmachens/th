@@ -4,18 +4,25 @@ import { getLaneOpponent } from '../../../../lib/riot/helpers';
 
 const theSpartan: TrophyServer = {
   ...base,
-  checkProgress: ({ match, participant }) => {
-    if (participant.timeline.role !== 'SOLO') {
+  checkProgress: ({ match, timeline, participant }) => {
+    if (participant.role !== 'SOLO') {
       return 0;
     }
-    const xpAt10 = participant.timeline.xpPerMinDeltas['0-10'] * 10;
-    const laneOpponent = getLaneOpponent(match.participants, participant);
+    const frameAt10 = timeline.info.frames[9];
+    if (!frameAt10) {
+      return 0;
+    }
+    frameAt10.participantFrames[participant.participantId].xp;
+    const xpAt10 =
+      frameAt10.participantFrames[participant.participantId].xp || 0;
+    const laneOpponent = getLaneOpponent(match.info.participants, participant);
 
     if (!laneOpponent) {
       return 0;
     }
 
-    const xpAt10OtherLaner = laneOpponent.timeline.xpPerMinDeltas['0-10'] * 10;
+    const xpAt10OtherLaner =
+      frameAt10.participantFrames[laneOpponent.participantId].xp || 0;
     return Number(xpAt10OtherLaner + 1200 <= xpAt10);
   },
 };

@@ -14,12 +14,12 @@ const theGrandChallenge: TrophyServer = {
       (event) =>
         event.type === 'BUILDING_KILL' &&
         (event.killerId === participant.participantId ||
-          event.assistingParticipantIds.some(
+          event.assistingParticipantIds?.some(
             (id) => id === participant.participantId
           )) &&
         (event.buildingType === 'INHIBITOR_BUILDING' ||
           (event.buildingType === 'TOWER_BUILDING' &&
-            event.towerType === 'BASE_TOWER'))
+            event.towerType === 'BASE_TURRET'))
     );
 
     const validKills = soloKills.filter((event) =>

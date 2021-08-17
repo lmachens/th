@@ -6,10 +6,10 @@ const noxianWarfare: TrophyServer = {
   ...base,
   checkProgress: ({ match, account, participant }) => {
     const mostDestructs =
-      participant.stats.inhibitorKills + participant.stats.turretKills >=
+      participant.inhibitorKills + participant.turretKills >=
       Math.max(
-        ...match.participants.map(
-          (other) => other.stats.inhibitorKills + other.stats.turretKills
+        ...match.info.participants.map(
+          (other) => other.inhibitorKills + other.turretKills
         )
       );
 

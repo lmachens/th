@@ -7,7 +7,8 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const tripleAssist: TrophyServer = {
   ...base,
   checkProgress: ({ events, participant, match }) => {
-    const requiredTripleAssists = match.queueId === ARAM_HOWLING_ABYSS ? 2 : 1;
+    const requiredTripleAssists =
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 2 : 1;
 
     const assists = getParticipantAssists(events, participant.participantId);
 

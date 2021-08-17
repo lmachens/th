@@ -8,13 +8,12 @@ const livingArtillery: TrophyServer = {
     const teammates = getTeammates(match, participant);
 
     const teammatesDamage = teammates.reduce(
-      (current, teammate) =>
-        current + teammate.stats.totalDamageDealtToChampions,
+      (current, teammate) => current + teammate.totalDamageDealtToChampions,
       0
     );
 
     const damageShare =
-      participant.stats.totalDamageDealtToChampions / teammatesDamage;
+      participant.totalDamageDealtToChampions / teammatesDamage;
     return damageShare / 0.35;
   },
 };

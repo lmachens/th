@@ -5,8 +5,9 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const kitchenKnife: TrophyServer = {
   ...base,
   checkProgress: ({ participant, match }) => {
-    const requiredDamage = match.queueId === ARAM_HOWLING_ABYSS ? 35000 : 30000;
-    return participant.stats.totalDamageDealtToChampions / requiredDamage;
+    const requiredDamage =
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 35000 : 30000;
+    return participant.totalDamageDealtToChampions / requiredDamage;
   },
 };
 

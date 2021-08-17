@@ -4,7 +4,7 @@ import base from './base';
 const tripleKill: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return Number(participant.stats.tripleKills > 0);
+    return Number(participant.tripleKills > 0);
   },
 };
 

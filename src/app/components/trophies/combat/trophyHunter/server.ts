@@ -1,3 +1,4 @@
+import { ChampionKillEvent } from '../../../../lib/riot/types';
 import { TrophyServer } from '../../types';
 import base from './base';
 
@@ -10,7 +11,7 @@ const trophyHunter: TrophyServer = {
           event.type === 'CHAMPION_KILL' &&
           event.killerId === participant.participantId
       )
-      .map((event) => event.victimId);
+      .map((event: ChampionKillEvent) => event.victimId);
     const uniqueVictimIds = victimIds.filter(
       (victimId, index, current) => current.indexOf(victimId) === index
     );

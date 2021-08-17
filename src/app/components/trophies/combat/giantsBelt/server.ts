@@ -5,9 +5,8 @@ const giantsBelt: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
     const damageTankedPerDeath =
-      (participant.stats.totalDamageTaken +
-        participant.stats.damageSelfMitigated) /
-      Math.max(participant.stats.deaths, 1);
+      (participant.totalDamageTaken + participant.damageSelfMitigated) /
+      Math.max(participant.deaths, 1);
 
     return Number(damageTankedPerDeath >= 20000);
   },

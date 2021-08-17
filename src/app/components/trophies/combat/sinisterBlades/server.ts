@@ -5,8 +5,9 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const sinisterBlades: TrophyServer = {
   ...base,
   checkProgress: ({ participant, match }) => {
-    const requiredDoubleKills = match.queueId === ARAM_HOWLING_ABYSS ? 7 : 4;
-    return participant.stats.doubleKills / requiredDoubleKills;
+    const requiredDoubleKills =
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 7 : 4;
+    return participant.doubleKills / requiredDoubleKills;
   },
 };
 

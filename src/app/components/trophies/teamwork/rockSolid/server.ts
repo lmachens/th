@@ -8,13 +8,13 @@ const rockSolid: TrophyServer = {
     const opponents = getOpponents(match, participant);
 
     const physicalDamageTotal = opponents
-      .map((p) => p.stats.physicalDamageDealtToChampions)
+      .map((participant) => participant.physicalDamageDealtToChampions)
       .reduce((memo, num) => memo + num);
     const magicalDamageTotal = opponents
-      .map((p) => p.stats.magicDamageDealtToChampions)
+      .map((participant) => participant.magicDamageDealtToChampions)
       .reduce((memo, num) => memo + num);
     const trueDamageTotal = opponents
-      .map((p) => p.stats.trueDamageDealtToChampions)
+      .map((participant) => participant.trueDamageDealtToChampions)
       .reduce((memo, num) => memo + num);
 
     const opponentsPhysicalDamageRatio =
@@ -23,7 +23,7 @@ const rockSolid: TrophyServer = {
 
     return Number(
       opponentsPhysicalDamageRatio > 0.6 &&
-        participant.stats.win &&
+        participant.win &&
         participant.championId === 54
     );
   },

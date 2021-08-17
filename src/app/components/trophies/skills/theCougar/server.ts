@@ -3,25 +3,30 @@ import base from './base';
 
 const theCougar: TrophyServer = {
   ...base,
-  checkProgress: ({ match, participant }) => {
-    if (participant.timeline.lane !== 'JUNGLE') {
+  checkProgress: ({ match, participant, timeline }) => {
+    if (participant.teamPosition !== 'JUNGLE') {
       return 0;
     }
-    const otherJungler = match.participants.find(
-      (player) =>
-        player.timeline.lane === 'JUNGLE' &&
-        player.teamId !== participant.teamId
+    const enemyJungler = match.info.participants.find(
+      (otherParticipant) =>
+        otherParticipant.teamId !== participant.teamId &&
+        otherParticipant.lane === participant.lane
     );
-    if (!otherJungler) {
+
+    if (!enemyJungler) {
+      return 0;
+    }
+    const frameAt10 = timeline.info.frames[9];
+    if (!frameAt10) {
       return 0;
     }
 
-    const goldAt10 = participant.timeline.goldPerMinDeltas['0-10'] * 10;
+    const goldAt10 =
+      frameAt10.participantFrames[participant.participantId].totalGold;
     const goldAt10OtherJungler =
-      otherJungler.timeline.goldPerMinDeltas['0-10'] * 10;
+      frameAt10.participantFrames[enemyJungler.participantId].totalGold;
 
-    const theCougar = goldAt10OtherJungler + 1000 <= goldAt10;
-    return Number(theCougar);
+    return goldAt10 / (goldAt10OtherJungler + 1000);
   },
 };
 

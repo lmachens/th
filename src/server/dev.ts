@@ -11,7 +11,6 @@ import { newAccount } from '../app/lib//accounts/server';
 import {
   getAllEvents,
   getParticipantByAccount,
-  getParticipantIdentity,
 } from '../app/lib//riot/helpers';
 import {
   ARAM_HOWLING_ABYSS,
@@ -67,8 +66,10 @@ export const handlePostDev = async (req: Request, res: Response) => {
     return res.status(404).end('Not Found');
   }
 
-  if (!SUPPORTED_QUEUE_IDS.includes(match.queueId)) {
-    return res.status(403).end(`Game mode ${match.queueId} is not supported`);
+  if (!SUPPORTED_QUEUE_IDS.includes(match.info.queueId)) {
+    return res
+      .status(403)
+      .end(`Game mode ${match.info.queueId} is not supported`);
   }
 
   const events = getAllEvents(timeline);
@@ -85,13 +86,12 @@ export const handlePostDev = async (req: Request, res: Response) => {
   const timeLabel = `Check ${matchId} of ${account.summoner.name} ${account.summoner.platformId}`;
   console.time(timeLabel);
 
-  const participantIdentity = getParticipantIdentity(match, account);
-  if (!participantIdentity) {
+  const participant = getParticipantByAccount(match, account);
+  if (!participant) {
     log(`Participant not found ${matchId} ${account.summoner.name}`);
     return res.status(403).end('Participant not found');
   }
 
-  const participant = getParticipantByAccount(match, account);
   const teammateAccounts = await getTeammateAccounts(match, participant);
 
   const activeMission = await getMissionsCollection().findOne({
@@ -135,7 +135,7 @@ export const handlePostDev = async (req: Request, res: Response) => {
   }
 
   const trophiesAboutToCheck =
-    match.queueId === ARAM_HOWLING_ABYSS ? aramTrophies : allTrophies;
+    match.info.queueId === ARAM_HOWLING_ABYSS ? aramTrophies : allTrophies;
   const checkedTrophies = trophiesAboutToCheck.reduce(
     (current, trophy) => ({
       ...current,

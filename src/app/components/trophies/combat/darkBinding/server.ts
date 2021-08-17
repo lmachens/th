@@ -4,7 +4,7 @@ import base from './base';
 const darkBinding: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.timeCCingOthers / 100;
+    return participant.timeCCingOthers / 100;
   },
 };
 

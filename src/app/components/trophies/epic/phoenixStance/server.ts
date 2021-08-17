@@ -11,11 +11,12 @@ const phoenixStance: TrophyServer = {
 
     const elderDragonKills = events.filter(
       (event) =>
+        event.type === 'ELITE_MONSTER_KILL' &&
         event.monsterSubType === 'ELDER_DRAGON' &&
         teamIds.includes(event.killerId)
     ).length;
 
-    return Number(elderDragonKills >= 2 && participant.stats.win);
+    return Number(elderDragonKills >= 2 && participant.win);
   },
 };
 

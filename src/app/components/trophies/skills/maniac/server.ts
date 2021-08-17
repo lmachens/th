@@ -5,9 +5,9 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const maniac: TrophyServer = {
   ...base,
   checkProgress: ({ participant, match }) => {
-    const requiredKills = match.queueId === ARAM_HOWLING_ABYSS ? 12 : 10;
+    const requiredKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 12 : 10;
 
-    return participant.stats.kills / requiredKills;
+    return participant.kills / requiredKills;
   },
 };
 

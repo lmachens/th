@@ -6,16 +6,14 @@ const theWhale: TrophyServer = {
   ...base,
   checkProgress: ({ match, account, participant }) => {
     const mostCS = Math.max(
-      ...match.participants.map(
+      ...match.info.participants.map(
         (participant) =>
-          participant.stats.totalMinionsKilled +
-          participant.stats.neutralMinionsKilled
+          participant.totalMinionsKilled + participant.neutralMinionsKilled
       )
     );
 
     const hasMostCS =
-      participant.stats.totalMinionsKilled +
-        participant.stats.neutralMinionsKilled >=
+      participant.totalMinionsKilled + participant.neutralMinionsKilled >=
       mostCS;
     if (!hasMostCS) {
       return 0;

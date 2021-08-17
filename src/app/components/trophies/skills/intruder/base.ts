@@ -5,7 +5,7 @@ const intruder: TrophyBase = {
   name: 'intruder',
   level: 'skills3',
   title: 'Intruder',
-  description: 'Take at least 25 cs from the enemy jungle.',
+  description: 'Be 15 cs ahead of the enemy jungler at 10 minutes as jungler.',
   category: 'skills',
 };
 

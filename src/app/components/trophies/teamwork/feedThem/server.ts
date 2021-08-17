@@ -9,7 +9,7 @@ const feedThem: TrophyServer = {
       (assists, event) => {
         if (
           event.type !== 'CHAMPION_KILL' ||
-          !event.assistingParticipantIds.includes(participant.participantId)
+          !event.assistingParticipantIds?.includes(participant.participantId)
         ) {
           return assists;
         }
@@ -21,7 +21,7 @@ const feedThem: TrophyServer = {
       },
       {}
     );
-    if (match.queueId === ARAM_HOWLING_ABYSS) {
+    if (match.info.queueId === ARAM_HOWLING_ABYSS) {
       const validAssists = Object.values(assists).filter(
         (assist) => assist >= 3
       ).length;

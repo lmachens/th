@@ -4,7 +4,7 @@ import base from './base';
 const sandsOfTime: TrophyServer = {
   ...base,
   checkProgress: ({ match }) => {
-    return Number(match.gameDuration >= 3000);
+    return Number(match.info.gameDuration >= 3000);
   },
 };
 

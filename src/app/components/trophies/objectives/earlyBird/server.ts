@@ -5,8 +5,8 @@ const earlyBird: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
     if (
-      !participant.stats.firstBloodKill ||
-      (!participant.stats.firstTowerAssist && !participant.stats.firstTowerKill)
+      !participant.firstBloodKill ||
+      (!participant.firstTowerAssist && !participant.firstTowerKill)
     ) {
       return 0;
     }

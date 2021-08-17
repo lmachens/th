@@ -4,7 +4,7 @@ import base from './base';
 const dusk: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.wardsKilled / 6;
+    return participant.wardsKilled / 6;
   },
 };
 

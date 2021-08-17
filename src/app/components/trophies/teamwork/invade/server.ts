@@ -9,7 +9,7 @@ const invade: TrophyServer = {
         event.type === 'CHAMPION_KILL' &&
         event.timestamp < 75000 &&
         (event.killerId === participant.participantId ||
-          event.assistingParticipantIds.includes(participant.participantId))
+          event.assistingParticipantIds?.includes(participant.participantId))
     );
 
     return Number(hasInvadeKillParticipation);

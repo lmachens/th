@@ -9,10 +9,10 @@ const comradeInArms: TrophyServer = {
         if (
           event.type !== 'CHAMPION_KILL' ||
           (event.killerId !== participant.participantId &&
-            !event.assistingParticipantIds.includes(
+            !event.assistingParticipantIds?.includes(
               participant.participantId
             )) ||
-          event.assistingParticipantIds.length !== 1
+          event.assistingParticipantIds?.length !== 1
         ) {
           return duoKills;
         }

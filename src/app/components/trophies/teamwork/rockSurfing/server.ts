@@ -5,10 +5,7 @@ import { getParticipantKillsAndAssists } from '../../../../lib/riot/helpers';
 const rockSurfing: TrophyServer = {
   ...base,
   checkProgress: ({ events, participant }) => {
-    if (
-      participant.timeline.lane !== 'MIDDLE' ||
-      participant.timeline.role !== 'SOLO'
-    ) {
+    if (participant.teamPosition !== 'MIDDLE') {
       return 0;
     }
 

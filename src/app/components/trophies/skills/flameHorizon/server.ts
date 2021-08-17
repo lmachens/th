@@ -5,15 +5,14 @@ import { getLaneOpponent } from '../../../../lib/riot/helpers';
 const flameHorizon: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const laneOpponent = getLaneOpponent(match.participants, participant);
+    const laneOpponent = getLaneOpponent(match.info.participants, participant);
     if (!laneOpponent) {
       return 0;
     }
     return (
-      (participant.stats.totalMinionsKilled +
-        participant.stats.neutralMinionsKilled) /
-      (laneOpponent.stats.totalMinionsKilled +
-        laneOpponent.stats.neutralMinionsKilled +
+      (participant.totalMinionsKilled + participant.neutralMinionsKilled) /
+      (laneOpponent.totalMinionsKilled +
+        laneOpponent.neutralMinionsKilled +
         100)
     );
   },

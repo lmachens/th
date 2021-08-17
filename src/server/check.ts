@@ -15,7 +15,6 @@ import {
 } from '../app/lib//accounts';
 import {
   getAllEvents,
-  getParticipantIdentity,
   getParticipantByAccount,
 } from '../app/lib//riot/helpers';
 import {
@@ -110,11 +109,13 @@ export const handlePostCheck = async (req: Request, res: Response) => {
       return res.status(404).end('Match in progress');
     }
 
-    if (!SUPPORTED_QUEUE_IDS.includes(match.queueId)) {
-      return res.status(403).end(`Game mode ${match.queueId} is not supported`);
+    if (!SUPPORTED_QUEUE_IDS.includes(match.info.queueId)) {
+      return res
+        .status(403)
+        .end(`Game mode ${match.info.queueId} is not supported`);
     }
 
-    if (match.gameDuration < 300) {
+    if (match.info.gameDuration < 300) {
       return res.json({
         trophyNames: [],
         unlockedIslandNames: [],
@@ -128,12 +129,11 @@ export const handlePostCheck = async (req: Request, res: Response) => {
     const completedTrophyNames = [];
     const unlockedIslandNames = [];
 
-    const participantIdentity = getParticipantIdentity(match, account);
-    if (!participantIdentity) {
+    const participant = getParticipantByAccount(match, account);
+    if (!participant) {
       log(`Participant not found ${matchId} ${account.summoner.name}`);
       return res.status(403).end('Participant not found');
     }
-    const participant = getParticipantByAccount(match, account);
 
     const teammateAccounts = await getTeammateAccounts(match, participant);
 
@@ -200,7 +200,7 @@ export const handlePostCheck = async (req: Request, res: Response) => {
       // Filter level trophies ARAM/SR
 
       const trophiesToCheck =
-        match.queueId === ARAM_HOWLING_ABYSS
+        match.info.queueId === ARAM_HOWLING_ABYSS
           ? level.trophies.filter((trophy) => trophy.aramSupport)
           : level.trophies;
 
@@ -348,7 +348,7 @@ export const handlePostCheck = async (req: Request, res: Response) => {
 
     const allTrophiesProgress: TrophyProgress[] = [];
     const trophiesAboutToCheck =
-      match.queueId === ARAM_HOWLING_ABYSS ? aramTrophies : allTrophies;
+      match.info.queueId === ARAM_HOWLING_ABYSS ? aramTrophies : allTrophies;
     trophiesAboutToCheck.forEach((trophy) => {
       const result = trophy.checkProgress({
         match,
@@ -374,7 +374,7 @@ export const handlePostCheck = async (req: Request, res: Response) => {
       }
       updateTrophyStats({
         trophyName: trophy.name,
-        mapId: match.mapId,
+        mapId: match.info.mapId,
         championId: participant.championId,
         obtained,
       });
@@ -382,12 +382,12 @@ export const handlePostCheck = async (req: Request, res: Response) => {
 
     await addHistoryMatch({
       accountId: account._id,
-      gameId: match.gameId,
+      gameId: match.info.gameId,
       championId: participant.championId,
-      win: participant.stats.win,
-      queueId: match.queueId,
-      gameDuration: match.gameDuration,
-      gameCreatedAt: new Date(match.gameCreation),
+      win: participant.win,
+      queueId: match.info.queueId,
+      gameDuration: match.info.gameDuration,
+      gameCreatedAt: new Date(match.info.gameCreation),
       trophyNames: completedTrophyNames,
       allTrophiesProgress,
     });

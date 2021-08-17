@@ -3,15 +3,13 @@ import base from './base';
 import { Participant } from '../../../../lib/riot/types';
 
 const calculateDamagePerGold = (participant: Participant) => {
-  return (
-    participant.stats.totalDamageDealtToChampions / participant.stats.goldEarned
-  );
+  return participant.totalDamageDealtToChampions / participant.goldEarned;
 };
 
 const flail: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const sortedParticipants = match.participants.sort(
+    const sortedParticipants = match.info.participants.sort(
       (participantA, participantB) => {
         return (
           calculateDamagePerGold(participantB) -

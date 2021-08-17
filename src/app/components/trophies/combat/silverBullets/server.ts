@@ -4,15 +4,15 @@ import base from './base';
 const silverBullets: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const others = match.participants.filter(
+    const others = match.info.participants.filter(
       (other) => other.participantId !== participant.participantId
     );
     const maxTotalDamageDealtToChampions = Math.max(
-      ...others.map((other) => other.stats.totalDamageDealtToChampions)
+      ...others.map((other) => other.totalDamageDealtToChampions)
     );
 
     return Number(
-      participant.stats.physicalDamageDealtToChampions >=
+      participant.physicalDamageDealtToChampions >=
         maxTotalDamageDealtToChampions
     );
   },

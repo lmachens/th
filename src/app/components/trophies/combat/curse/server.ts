@@ -5,10 +5,7 @@ import { minutesToSeconds } from '../../../../lib/utils/dates';
 const curse: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return (
-      participant.stats.totalTimeCrowdControlDealt /
-      minutesToSeconds(REQUIRED_MINUTES)
-    );
+    return participant.totalTimeCCDealt / minutesToSeconds(REQUIRED_MINUTES);
   },
 };
 

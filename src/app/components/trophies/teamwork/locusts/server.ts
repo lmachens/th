@@ -12,10 +12,10 @@ const locusts: TrophyServer = {
 
     const locustsKillEvents = getAllKills(events).filter(
       (event) =>
-        event.assistingParticipantIds.length >= 4 &&
+        event.assistingParticipantIds?.length >= 4 &&
         teamIds.includes(event.killerId)
     );
-    const requiredKills = match.queueId === ARAM_HOWLING_ABYSS ? 12 : 10;
+    const requiredKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 12 : 10;
     return locustsKillEvents.length / requiredKills;
   },
 };

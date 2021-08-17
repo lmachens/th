@@ -1,14 +1,13 @@
 import { TrophyServer } from '../../types';
 import base from './base';
-import { getTrophyProgress } from '../../../../lib/accounts/helpers';
+import { findPerk, getTrophyProgress } from '../../../../lib/accounts/helpers';
 
 const spinningBlades: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'spinningBlades');
-
-    const damage =
-      participant.stats.perk0 === 8005 ? participant.stats.perk0Var1 : 0;
+    const pressTheAttack = findPerk(participant, 8005);
+    const damage = Math.max(...Object.values(pressTheAttack));
 
     return damage / 2500 + trophyProgress;
   },

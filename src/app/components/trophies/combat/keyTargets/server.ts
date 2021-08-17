@@ -5,13 +5,13 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const keyTargets: TrophyServer = {
   ...base,
   checkProgress: ({ match, timeline, participant }) => {
-    const opponentIds = match.participants
+    const opponentIds = match.info.participants
       .filter(
         (matchParticipant) => matchParticipant.teamId !== participant.teamId
       )
       .map((opponent) => opponent.participantId);
 
-    const keyTargetKills = timeline.frames.reduce(
+    const keyTargetKills = timeline.info.frames.reduce(
       (currentKeyTargetKills, frame) => {
         const participantKills = frame.events.filter(
           (event) =>
@@ -28,14 +28,16 @@ const keyTargets: TrophyServer = {
           )
           .sort((a, b) => b.totalGold - a.totalGold)[0];
         const richesParticipantKills = participantKills.filter(
-          (kill) => kill.victimId === richesOpponent.participantId
+          (kill) =>
+            kill.type === 'CHAMPION_KILL' &&
+            kill.victimId === richesOpponent.participantId
         ).length;
         return currentKeyTargetKills + richesParticipantKills;
       },
       0
     );
 
-    const requiredKills = match.queueId === ARAM_HOWLING_ABYSS ? 4 : 3;
+    const requiredKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 4 : 3;
     return keyTargetKills / requiredKills;
   },
 };

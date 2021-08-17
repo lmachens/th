@@ -6,7 +6,7 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const teamEffort: TrophyServer = {
   ...base,
   checkProgress: ({ events, participant, match }) => {
-    const requiredTeamKills = match.queueId === ARAM_HOWLING_ABYSS ? 9 : 3;
+    const requiredTeamKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 9 : 3;
 
     const killsAndAssists = getParticipantKillsAndAssists(
       events,
@@ -14,7 +14,7 @@ const teamEffort: TrophyServer = {
     );
 
     const teamEffortKills = killsAndAssists.filter(
-      (event) => event.assistingParticipantIds.length >= 4
+      (event) => event.assistingParticipantIds?.length >= 4
     ).length;
 
     return teamEffortKills / requiredTeamKills;

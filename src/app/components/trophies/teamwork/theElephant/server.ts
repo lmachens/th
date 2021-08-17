@@ -7,16 +7,16 @@ const theElephant: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
     const requiredTimelimit =
-      match.queueId === ARAM_HOWLING_ABYSS
+      match.info.queueId === ARAM_HOWLING_ABYSS
         ? minutesToSeconds(ARAM_MINUTES)
         : minutesToSeconds(SUMMONERS_RIFT_MINUTES);
     if (
-      !participant.stats.longestTimeSpentLiving &&
-      match.gameDuration >= requiredTimelimit
+      !participant.longestTimeSpentLiving &&
+      match.info.gameDuration >= requiredTimelimit
     ) {
       return 1;
     }
-    return participant.stats.longestTimeSpentLiving / requiredTimelimit;
+    return participant.longestTimeSpentLiving / requiredTimelimit;
   },
 };
 

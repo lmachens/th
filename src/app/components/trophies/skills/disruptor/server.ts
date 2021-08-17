@@ -4,16 +4,13 @@ import base from './base';
 const disruptor: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const maxTotalTimeCrowdControlDealt = Math.max(
-      ...match.participants.map(
-        (participant) => participant.stats.totalTimeCrowdControlDealt
+    const maxtotalTimeCCDealt = Math.max(
+      ...match.info.participants.map(
+        (participant) => participant.totalTimeCCDealt
       )
     );
 
-    return Number(
-      participant.stats.totalTimeCrowdControlDealt >=
-        maxTotalTimeCrowdControlDealt
-    );
+    return Number(participant.totalTimeCCDealt >= maxtotalTimeCCDealt);
   },
 };
 

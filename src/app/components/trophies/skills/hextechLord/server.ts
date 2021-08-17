@@ -4,7 +4,7 @@ import base from './base';
 const hextechLord: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.goldEarned / 15000;
+    return participant.goldEarned / 15000;
   },
 };
 

@@ -6,7 +6,7 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const noxianKnight: TrophyServer = {
   ...base,
   checkProgress: ({ match, events, participant }) => {
-    const teamParticipantIds = match.participants
+    const teamParticipantIds = match.info.participants
       .filter((other) => other.teamId === participant.teamId)
       .map((teammate) => teammate.participantId);
 
@@ -21,10 +21,11 @@ const noxianKnight: TrophyServer = {
         teamParticipantIds.includes(event.killerId)
     ).length;
 
-    const requiredRatio = match.queueId === ARAM_HOWLING_ABYSS ? 0.85 : 0.6;
+    const requiredRatio =
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 0.85 : 0.6;
     return Number(
       killsAndAssists / teamkills >= requiredRatio &&
-        participant.stats.champLevel >= 18
+        participant.champLevel >= 18
     );
   },
 };

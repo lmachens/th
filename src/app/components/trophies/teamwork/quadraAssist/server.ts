@@ -30,7 +30,8 @@ const quadraAssist: TrophyServer = {
       return firstTwoKillsSpree && secondTwoKillsSpree && thirdTwoKillsSpree;
     }).length;
 
-    const requiredQuadraKills = match.queueId === ARAM_HOWLING_ABYSS ? 2 : 1;
+    const requiredQuadraKills =
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 2 : 1;
     return quadraAssists / requiredQuadraKills;
   },
 };

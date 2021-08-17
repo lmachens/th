@@ -6,8 +6,10 @@ import { zip } from '../../../../lib/utils/arrays';
 const chaliceOfRecovery: TrophyServer = {
   ...base,
   checkProgress: ({ match, timeline, participant }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
-    const opponent = match.teams.find(
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
+    const opponent = match.info.teams.find(
       (team) => team.teamId !== participant.teamId
     );
 
@@ -19,7 +21,7 @@ const chaliceOfRecovery: TrophyServer = {
     );
 
     const teamMaxGoldDown = Math.min(...teamGoldDiffFrames);
-    return Number(teamMaxGoldDown <= -4000 && team.win === 'Win');
+    return Number(teamMaxGoldDown <= -4000 && team.win);
   },
 };
 

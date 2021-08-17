@@ -4,7 +4,7 @@ import base from './base';
 const quadraKill: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.quadraKills;
+    return participant.quadraKills;
   },
 };
 

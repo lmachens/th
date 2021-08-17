@@ -14,21 +14,18 @@ const nurturing: TrophyServer = {
 
     const teammates = getTeammates(match, participant);
     const maxKills = Math.max(
-      ...match.participants.map((participant) => participant.stats.kills)
+      ...match.info.participants.map((participant) => participant.kills)
     );
 
     const fedTeammate = teammates.find((teammate) => {
       const others = getOtherParticipants(match, teammate);
       const maxTotalDamageDealtToChampions = Math.max(
-        ...others.map(
-          (participant) => participant.stats.totalDamageDealtToChampions
-        )
+        ...others.map((participant) => participant.totalDamageDealtToChampions)
       );
 
       return (
-        teammate.stats.kills >= maxKills &&
-        teammate.stats.totalDamageDealtToChampions >=
-          maxTotalDamageDealtToChampions
+        teammate.kills >= maxKills &&
+        teammate.totalDamageDealtToChampions >= maxTotalDamageDealtToChampions
       );
     });
     if (!fedTeammate) {
@@ -36,7 +33,9 @@ const nurturing: TrophyServer = {
     }
 
     const timeLimit =
-      match.queueId === ARAM_HOWLING_ABYSS ? 7 * 60 * 1000 : 10 * 60 * 1000;
+      match.info.queueId === ARAM_HOWLING_ABYSS
+        ? 7 * 60 * 1000
+        : 10 * 60 * 1000;
     const fedTeamMateAssistsPre10 = assists.filter(
       (assist) =>
         assist.timestamp < timeLimit &&

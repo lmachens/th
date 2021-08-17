@@ -4,13 +4,15 @@ import base from './base';
 const jungleOfTraps: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
 
     return Number(
-      participant.stats.visionWardsBoughtInGame >= 4 &&
-        participant.stats.wardsKilled >= 4 &&
-        participant.stats.killingSprees >= 1 &&
-        team.dragonKills >= 2
+      participant.visionWardsBoughtInGame >= 4 &&
+        participant.wardsKilled >= 4 &&
+        participant.killingSprees >= 1 &&
+        team.objectives.dragon.kills >= 2
     );
   },
 };

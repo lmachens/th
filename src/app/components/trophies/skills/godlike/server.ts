@@ -4,7 +4,7 @@ import base from './base';
 const godlike: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.largestKillingSpree / 7;
+    return participant.largestKillingSpree / 7;
   },
 };
 

@@ -4,16 +4,15 @@ import base from './base';
 const wizard: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const others = match.participants.filter(
+    const others = match.info.participants.filter(
       (other) => other.participantId !== participant.participantId
     );
     const maxTotalDamageDealtToChampions = Math.max(
-      ...others.map((other) => other.stats.totalDamageDealtToChampions)
+      ...others.map((other) => other.totalDamageDealtToChampions)
     );
 
     return Number(
-      participant.stats.magicDamageDealtToChampions >=
-        maxTotalDamageDealtToChampions
+      participant.magicDamageDealtToChampions >= maxTotalDamageDealtToChampions
     );
   },
 };

@@ -4,11 +4,13 @@ import base from './base';
 const thePhoenix: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const opponentTeam = match.teams.find(
+    const opponentTeam = match.info.teams.find(
       (team) => team.teamId !== participant.teamId
     );
 
-    return Number(participant.stats.win && opponentTeam.inhibitorKills >= 3);
+    return Number(
+      participant.win && opponentTeam.objectives.inhibitor.kills >= 3
+    );
   },
 };
 

@@ -1,19 +1,17 @@
 import { TrophyServer } from '../../types';
 import base from './base';
-import { getMinionsAtMin } from '../../../../lib/riot/helpers';
+import { getLaneOpponent, getMinionsAtMin } from '../../../../lib/riot/helpers';
 
 const precision: TrophyServer = {
   ...base,
   checkProgress: ({ match, account, participant, timeline }) => {
-    const opponent = match.participants.find(
-      (otherParticipant) =>
-        otherParticipant.participantId !== participant.participantId &&
-        otherParticipant.timeline.role === participant.timeline.role &&
-        otherParticipant.timeline.lane === participant.timeline.lane
-    );
+    if (!['BOTTOM', 'MIDDLE', 'TOP'].includes(participant.teamPosition)) {
+      return 0;
+    }
+    const opponent = getLaneOpponent(match.info.participants, participant);
     if (!opponent) {
       console.warn(
-        `Can not find lane opponent for ${account.summoner.name} as ${participant.timeline.role} ${participant.timeline.lane}`
+        `Can not find lane opponent for ${account.summoner.name} as ${participant.role} ${participant.lane}`
       );
       return 0;
     }

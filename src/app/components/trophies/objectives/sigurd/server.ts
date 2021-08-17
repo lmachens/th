@@ -4,10 +4,14 @@ import base from './base';
 const sigurd: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
 
     return Number(
-      team.firstDragon && team.baronKills >= 1 && team.dragonKills >= 5
+      team.objectives.dragon.first &&
+        team.objectives.baron.kills >= 1 &&
+        team.objectives.dragon.kills >= 5
     );
   },
 };

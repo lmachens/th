@@ -5,9 +5,7 @@ const farmer: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
     return (
-      (participant.stats.totalMinionsKilled +
-        participant.stats.neutralMinionsKilled) /
-      200
+      (participant.totalMinionsKilled + participant.neutralMinionsKilled) / 200
     );
   },
 };

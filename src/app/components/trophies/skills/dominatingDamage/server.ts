@@ -6,7 +6,7 @@ const dominatingDamage: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'dominatingDamage');
-    return participant.stats.totalDamageDealt / 200000 + trophyProgress;
+    return participant.totalDamageDealt / 200000 + trophyProgress;
   },
 };
 

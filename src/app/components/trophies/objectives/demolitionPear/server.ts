@@ -4,7 +4,7 @@ import base from './base';
 const demolitionPear: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.turretKills / 5;
+    return participant.turretKills / 5;
   },
 };
 

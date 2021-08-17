@@ -6,7 +6,7 @@ const hardHitter: TrophyServer = {
   ...base,
   checkProgress: ({ participant, account }) => {
     const trophyProgress = getTrophyProgress(account, 'hardHitter');
-    return participant.stats.totalDamageDealt / 150000 + trophyProgress;
+    return participant.totalDamageDealt / 150000 + trophyProgress;
   },
 };
 

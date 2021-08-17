@@ -5,10 +5,10 @@ const guardianAngel: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
     return Number(
-      participant.stats.totalHeal >= 15000 &&
-        participant.stats.totalUnitsHealed >= 5 &&
-        participant.stats.wardsPlaced >= 18 &&
-        participant.stats.assists >= 12
+      participant.totalHeal >= 15000 &&
+        participant.totalUnitsHealed >= 5 &&
+        participant.wardsPlaced >= 18 &&
+        participant.assists >= 12
     );
   },
 };

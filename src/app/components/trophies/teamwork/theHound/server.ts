@@ -10,7 +10,7 @@ const theHound: TrophyServer = {
       events,
       participant.participantId
     );
-    if (match.queueId === ARAM_HOWLING_ABYSS) {
+    if (match.info.queueId === ARAM_HOWLING_ABYSS) {
       const assists = participantAssists.filter(
         (assist) => assist.timestamp < 300000
       );

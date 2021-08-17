@@ -6,8 +6,10 @@ import { zip } from '../../../../lib/utils/arrays';
 const theBlackFlag: TrophyServer = {
   ...base,
   checkProgress: ({ match, timeline, participant }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
-    const opponent = match.teams.find(
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
+    const opponent = match.info.teams.find(
       (team) => team.teamId !== participant.teamId
     );
     const teamGoldFrames = calcTotalGoldFrames(timeline, team.teamId);
@@ -17,7 +19,7 @@ const theBlackFlag: TrophyServer = {
     );
 
     const teamMaxGoldDown = Math.min(...teamGoldDiffFrames);
-    return Number(teamMaxGoldDown <= -10000 && participant.stats.win);
+    return Number(teamMaxGoldDown <= -10000 && participant.win);
   },
 };
 

@@ -8,14 +8,14 @@ import {
 const theRoam: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant, events }) => {
-    if (participant.timeline.role !== 'DUO_SUPPORT') {
+    if (participant.teamPosition !== 'UTILITY') {
       return 0;
     }
     const middleX = 7435;
     const middleY = 7490;
-    const adc = match.participants.find(
+    const adc = match.info.participants.find(
       (teammate) =>
-        teammate.timeline.role === 'DUO_CARRY' &&
+        teammate.teamPosition === 'BOTTOM' &&
         teammate.teamId === participant.teamId
     );
 

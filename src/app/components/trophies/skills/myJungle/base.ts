@@ -5,7 +5,7 @@ const myJungle: TrophyBase = {
   name: 'myJungle',
   level: 'skills2',
   title: 'My Jungle',
-  description: 'Kill most team jungle creeps and most enemy jungle creeps.',
+  description: 'Kill most jungle creeps.',
   category: 'skills',
 };
 

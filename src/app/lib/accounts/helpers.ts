@@ -37,18 +37,20 @@ export const findPerk = (
   var2: number;
   var3: number;
 } => {
-  for (let i = 0; i < 6; i++) {
-    if (participant.stats[`perk${i}`] === perkId) {
-      return {
-        var1: participant.stats[`perk${i}Var1`],
-        var2: participant.stats[`perk${i}Var2`],
-        var3: participant.stats[`perk${i}Var3`],
-      };
-    }
-  }
-  return {
+  const perk = {
     var1: 0,
     var2: 0,
     var3: 0,
   };
+  participant.perks.styles.forEach((style) => {
+    const selection = style.selections.find(
+      (selection) => selection.perk === perkId
+    );
+    if (selection) {
+      perk.var1 = selection.var1;
+      perk.var2 = selection.var2;
+      perk.var3 = selection.var3;
+    }
+  });
+  return perk;
 };

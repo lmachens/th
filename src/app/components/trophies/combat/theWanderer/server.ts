@@ -5,7 +5,7 @@ import { getParticipantKillsAndAssists } from '../../../../lib/riot/helpers';
 const theWanderer: TrophyServer = {
   ...base,
   checkProgress: ({ events, participant }) => {
-    if (participant.timeline.lane !== 'BOTTOM') {
+    if (!['BOTTOM', 'UTILITY'].includes(participant.teamPosition)) {
       return 0;
     }
     const killsAndAssists = getParticipantKillsAndAssists(

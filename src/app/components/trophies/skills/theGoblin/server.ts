@@ -5,18 +5,13 @@ import { getTrophyProgress } from '../../../../lib/accounts/helpers';
 const theGoblin: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant, account }) => {
-    const maxEnemyJungleCsOthers = Math.max(
-      ...match.participants.map((participant) => participant.stats.kills)
-    );
-    const maxTeamJungleCsOthers = Math.max(
-      ...match.participants.map(
-        (participant) => participant.stats.neutralMinionsKilledTeamJungle
+    const maxJungleCs = Math.max(
+      ...match.info.participants.map(
+        (participant) => participant.neutralMinionsKilled
       )
     );
-    const mostJungleCS =
-      participant.stats.neutralMinionsKilledEnemyJungle >=
-        maxEnemyJungleCsOthers &&
-      participant.stats.neutralMinionsKilledTeamJungle >= maxTeamJungleCsOthers;
+
+    const mostJungleCS = participant.neutralMinionsKilled >= maxJungleCs;
     if (!mostJungleCS) {
       return 0;
     }

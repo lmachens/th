@@ -4,7 +4,7 @@ import base from './base';
 const pyromania: TrophyServer = {
   ...base,
   checkProgress: ({ match, events, participant }) => {
-    const teamIds = match.participants
+    const teamIds = match.info.participants
       .filter(
         (matchParticipant) => matchParticipant.teamId === participant.teamId
       )

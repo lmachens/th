@@ -4,7 +4,7 @@ import base from './base';
 const doubleKill: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.doubleKills;
+    return participant.doubleKills;
   },
 };
 

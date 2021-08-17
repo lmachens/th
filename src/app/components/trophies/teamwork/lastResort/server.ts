@@ -4,28 +4,27 @@ import base from './base';
 const lastResort: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
-    const teammates = match.participants.filter(
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
+    const teammates = match.info.participants.filter(
       (other) =>
         other.participantId !== participant.participantId &&
         other.teamId === team.teamId
     );
 
     const minTeamDeaths = Math.min(
-      ...teammates.map((participant) => participant.stats.deaths)
+      ...teammates.map((participant) => participant.deaths)
     );
 
     const maxKillParticipation = Math.max(
-      ...teammates.map(
-        (participant) => participant.stats.kills + participant.stats.assists
-      )
+      ...teammates.map((participant) => participant.kills + participant.assists)
     );
 
-    const hasMinDeaths = participant.stats.deaths <= minTeamDeaths;
+    const hasMinDeaths = participant.deaths <= minTeamDeaths;
     const hasHighesKillParticipation =
-      participant.stats.kills + participant.stats.assists >=
-      maxKillParticipation;
-    const isLoser = team.win === 'Fail';
+      participant.kills + participant.assists >= maxKillParticipation;
+    const isLoser = !team.win;
     return Number(hasMinDeaths && hasHighesKillParticipation && isLoser);
   },
 };

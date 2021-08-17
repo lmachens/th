@@ -4,7 +4,7 @@ import base from './base';
 const firstBlood: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return Number(participant.stats.firstBloodKill);
+    return Number(participant.firstBloodKill);
   },
 };
 

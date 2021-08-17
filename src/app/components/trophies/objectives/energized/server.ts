@@ -5,7 +5,7 @@ import { getTrophyProgress } from '../../../../lib/accounts/helpers';
 const energized: TrophyServer = {
   ...base,
   checkProgress: ({ match, events, participant, account }) => {
-    const teamIds = match.participants
+    const teamIds = match.info.participants
       .filter(
         (matchParticipant) => matchParticipant.teamId === participant.teamId
       )

@@ -6,9 +6,7 @@ const machete: TrophyServer = {
   ...base,
   checkProgress: ({ account, participant }) => {
     const trophyProgress = getTrophyProgress(account, 'machete');
-    return (
-      participant.stats.totalDamageDealtToChampions / 50000 + trophyProgress
-    );
+    return participant.totalDamageDealtToChampions / 50000 + trophyProgress;
   },
 };
 

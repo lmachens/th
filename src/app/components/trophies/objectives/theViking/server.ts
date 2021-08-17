@@ -9,13 +9,13 @@ const theViking: TrophyServer = {
       (event) =>
         event.type === 'CHAMPION_KILL' &&
         event.killerId === participant.participantId &&
-        event.assistingParticipantIds.length === 0 &&
+        event.assistingParticipantIds?.length === 0 &&
         event.timestamp <= minutesToMilliseconds(REQUIRED_MINUTES)
     );
 
     if (
       !hasSoloKillBefore10 ||
-      (!participant.stats.firstTowerKill && !participant.stats.firstTowerAssist)
+      (!participant.firstTowerKill && !participant.firstTowerAssist)
     ) {
       return 0;
     }

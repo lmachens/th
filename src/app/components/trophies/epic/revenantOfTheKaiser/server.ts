@@ -1,6 +1,7 @@
 import { TrophyServer } from '../../types';
 import base from './base';
 import { getTeam } from '../../../../lib/riot/helpers';
+import { EliteMonsterKill } from '../../../../lib/riot/types';
 
 const revenantOfTheKaiser: TrophyServer = {
   ...base,
@@ -11,15 +12,16 @@ const revenantOfTheKaiser: TrophyServer = {
 
     const elderDragonKills = events.filter(
       (event) =>
+        event.type === 'ELITE_MONSTER_KILL' &&
         event.monsterSubType === 'ELDER_DRAGON' &&
         teamIds.includes(event.killerId)
-    );
+    ) as EliteMonsterKill[];
     const baronKills = events.filter(
       (event) =>
         event.type === 'ELITE_MONSTER_KILL' &&
         event.monsterType === 'BARON_NASHOR' &&
         teamIds.includes(event.killerId)
-    );
+    ) as EliteMonsterKill[];
 
     const hasElderIntoBaronKill = elderDragonKills.some((elderDragonKill) =>
       baronKills.some(

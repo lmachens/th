@@ -6,14 +6,13 @@ const theBear: TrophyServer = {
   ...base,
   checkProgress: ({ match, account, participant }) => {
     const maxKillParticipation = Math.max(
-      ...match.participants.map(
-        (participant) => participant.stats.kills + participant.stats.assists
+      ...match.info.participants.map(
+        (participant) => participant.kills + participant.assists
       )
     );
 
     const highestKillParticipation = Number(
-      participant.stats.kills + participant.stats.assists >=
-        maxKillParticipation
+      participant.kills + participant.assists >= maxKillParticipation
     );
     if (!highestKillParticipation) {
       return 0;

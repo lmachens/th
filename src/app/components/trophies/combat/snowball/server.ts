@@ -5,7 +5,7 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const snowball: TrophyServer = {
   ...base,
   checkProgress: ({ events, participant, match }) => {
-    const requiredKills = match.queueId === ARAM_HOWLING_ABYSS ? 7 : 5;
+    const requiredKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 7 : 5;
     const snowballKills = events.filter(
       (event) =>
         event.type === 'CHAMPION_KILL' &&

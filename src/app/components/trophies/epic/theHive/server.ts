@@ -1,6 +1,7 @@
 import { TrophyServer } from '../../types';
 import base from './base';
 import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
+import { ChampionKillEvent } from '../../../../lib/riot/types';
 
 const theHive: TrophyServer = {
   ...base,
@@ -8,12 +9,12 @@ const theHive: TrophyServer = {
     const hiveKills = events.filter(
       (event) =>
         event.type === 'CHAMPION_KILL' &&
-        event.assistingParticipantIds.some(
+        event.assistingParticipantIds?.some(
           (assister) => assister === participant.participantId
         ) &&
-        event.assistingParticipantIds.length >= 4
-    );
-    if (match.queueId === ARAM_HOWLING_ABYSS) {
+        event.assistingParticipantIds?.length >= 4
+    ) as ChampionKillEvent[];
+    if (match.info.queueId === ARAM_HOWLING_ABYSS) {
       return hiveKills.length / 12;
     }
 

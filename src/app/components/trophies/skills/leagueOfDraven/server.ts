@@ -6,7 +6,7 @@ const leagueOfDraven: TrophyServer = {
   ...base,
   checkProgress: ({ match, events, participant }) => {
     const kills = getParticipantKills(events, participant.participantId);
-    const teammates = match.participants.filter(
+    const teammates = match.info.participants.filter(
       (other) =>
         other.participantId !== participant.participantId &&
         other.teamId === participant.teamId
@@ -14,9 +14,9 @@ const leagueOfDraven: TrophyServer = {
 
     const moreAssistsThanKills = teammates.every((teammate) => {
       const assistsToParticipant = kills.filter((kill) =>
-        kill.assistingParticipantIds.includes(teammate.participantId)
+        kill.assistingParticipantIds?.includes(teammate.participantId)
       ).length;
-      return teammate.stats.kills <= assistsToParticipant;
+      return teammate.kills <= assistsToParticipant;
     });
     return Number(moreAssistsThanKills);
   },

@@ -6,8 +6,8 @@ const trinityForce: TrophyServer = {
   checkProgress: ({ events, participant }) => {
     const trinityForceBuy = events.find(
       (event) =>
-        event.participantId === participant.participantId &&
         event.type === 'ITEM_PURCHASED' &&
+        event.participantId === participant.participantId &&
         event.itemId === 3078
     );
     if (!trinityForceBuy) {

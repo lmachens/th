@@ -4,7 +4,7 @@ import base from './base';
 const legendary: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.largestKillingSpree / 8;
+    return participant.largestKillingSpree / 8;
   },
 };
 

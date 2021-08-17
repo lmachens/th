@@ -4,7 +4,7 @@ import base from './base';
 const billGates: TrophyServer = {
   ...base,
   checkProgress: ({ participant }) => {
-    return participant.stats.goldEarned / 20000;
+    return participant.goldEarned / 20000;
   },
 };
 

@@ -6,8 +6,10 @@ import { zip } from '../../../../lib/utils/arrays';
 const thorsHammer: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant, timeline }) => {
-    const team = match.teams.find((team) => team.teamId === participant.teamId);
-    const opponent = match.teams.find(
+    const team = match.info.teams.find(
+      (team) => team.teamId === participant.teamId
+    );
+    const opponent = match.info.teams.find(
       (team) => team.teamId !== participant.teamId
     );
 

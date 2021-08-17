@@ -5,7 +5,7 @@ import { getLaneOpponent, getMinionsAtMin } from '../../../../lib/riot/helpers';
 const dominus: TrophyServer = {
   ...base,
   checkProgress: ({ match, events, participant, timeline }) => {
-    const laneOpponent = getLaneOpponent(match.participants, participant);
+    const laneOpponent = getLaneOpponent(match.info.participants, participant);
     if (!laneOpponent) {
       return 0;
     }
@@ -27,7 +27,7 @@ const dominus: TrophyServer = {
       (event) =>
         event.type === 'CHAMPION_KILL' &&
         event.killerId === participant.participantId &&
-        event.assistingParticipantIds.length === 0 &&
+        event.assistingParticipantIds?.length === 0 &&
         event.timestamp <= 600000
     ).length;
 

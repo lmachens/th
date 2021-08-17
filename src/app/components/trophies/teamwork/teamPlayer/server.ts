@@ -5,8 +5,8 @@ import { ARAM_HOWLING_ABYSS } from '../../../../lib/riot/queues';
 const teamPlayer: TrophyServer = {
   ...base,
   checkProgress: ({ participant, match }) => {
-    const requiredAssists = match.queueId === ARAM_HOWLING_ABYSS ? 20 : 10;
-    return participant.stats.assists / requiredAssists;
+    const requiredAssists = match.info.queueId === ARAM_HOWLING_ABYSS ? 20 : 10;
+    return participant.assists / requiredAssists;
   },
 };
 

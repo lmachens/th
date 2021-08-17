@@ -4,10 +4,8 @@ import base from './base';
 const deadlyVenom: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
-    const sortedParticipants = match.participants.sort(
-      (a, b) =>
-        b.stats.totalDamageDealtToChampions -
-        a.stats.totalDamageDealtToChampions
+    const sortedParticipants = match.info.participants.sort(
+      (a, b) => b.totalDamageDealtToChampions - a.totalDamageDealtToChampions
     );
     const otherParticipants = sortedParticipants.filter(
       (otherParticipant) =>
@@ -16,8 +14,8 @@ const deadlyVenom: TrophyServer = {
     const highestDamageParticipant = otherParticipants[0];
 
     const progress =
-      participant.stats.totalDamageDealtToChampions /
-      highestDamageParticipant.stats.totalDamageDealtToChampions /
+      participant.totalDamageDealtToChampions /
+      highestDamageParticipant.totalDamageDealtToChampions /
       1.25;
 
     return progress;
