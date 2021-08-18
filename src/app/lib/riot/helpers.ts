@@ -65,7 +65,7 @@ export const getMinionsAtMin = (
   minute: number,
   participantId: number
 ): number => {
-  const frame = timeline.info.frames[minute - 1];
+  const frame = timeline.info.frames[minute];
   if (!frame) {
     return 0;
   }

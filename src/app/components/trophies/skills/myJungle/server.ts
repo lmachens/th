@@ -9,7 +9,6 @@ const myJungle: TrophyServer = {
         (participant) => participant.neutralMinionsKilled
       )
     );
-
     return participant.neutralMinionsKilled / maxJungleCs;
   },
 };

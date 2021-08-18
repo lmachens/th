@@ -8,7 +8,7 @@ const theSpartan: TrophyServer = {
     if (participant.role !== 'SOLO') {
       return 0;
     }
-    const frameAt10 = timeline.info.frames[9];
+    const frameAt10 = timeline.info.frames[10];
     if (!frameAt10) {
       return 0;
     }
