@@ -4,15 +4,12 @@ import base from './base';
 
 const intruder: TrophyServer = {
   ...base,
-  checkProgress: ({ match, account, participant, timeline }) => {
+  checkProgress: ({ match, participant, timeline }) => {
     if (participant.teamPosition !== 'JUNGLE') {
       return 0;
     }
     const opponent = getLaneOpponent(match.info.participants, participant);
     if (!opponent) {
-      console.warn(
-        `Can not find lane opponent for ${account.summoner.name} as ${participant.role} ${participant.lane}`
-      );
       return 0;
     }
 

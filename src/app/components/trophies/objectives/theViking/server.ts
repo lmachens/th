@@ -9,7 +9,8 @@ const theViking: TrophyServer = {
       (event) =>
         event.type === 'CHAMPION_KILL' &&
         event.killerId === participant.participantId &&
-        event.assistingParticipantIds?.length === 0 &&
+        (!event.assistingParticipantIds ||
+          event.assistingParticipantIds.length === 0) &&
         event.timestamp <= minutesToMilliseconds(REQUIRED_MINUTES)
     );
 

@@ -187,7 +187,8 @@ export const getParticipantSoloKills = (
     (event) =>
       event.type === 'CHAMPION_KILL' &&
       event.killerId === participantId &&
-      event.assistingParticipantIds?.length === 0
+      (!event.assistingParticipantIds ||
+        event.assistingParticipantIds.length === 0)
   );
 };
 
@@ -270,6 +271,9 @@ export const getLaneOpponent = (
       return laneOpponents[0];
     }
   }
+  console.warn(
+    `Can not find lane opponent for ${participant.summonerName} as ${participant.teamPosition} and ${participant.individualPosition}`
+  );
   return null;
 };
 

@@ -27,7 +27,8 @@ const dominus: TrophyServer = {
       (event) =>
         event.type === 'CHAMPION_KILL' &&
         event.killerId === participant.participantId &&
-        event.assistingParticipantIds?.length === 0 &&
+        (!event.assistingParticipantIds ||
+          event.assistingParticipantIds.length === 0) &&
         event.timestamp <= 600000
     ).length;
 

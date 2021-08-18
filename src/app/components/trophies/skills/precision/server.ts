@@ -4,15 +4,12 @@ import { getLaneOpponent, getMinionsAtMin } from '../../../../lib/riot/helpers';
 
 const precision: TrophyServer = {
   ...base,
-  checkProgress: ({ match, account, participant, timeline }) => {
+  checkProgress: ({ match, participant, timeline }) => {
     if (!['BOTTOM', 'MIDDLE', 'TOP'].includes(participant.teamPosition)) {
       return 0;
     }
     const opponent = getLaneOpponent(match.info.participants, participant);
     if (!opponent) {
-      console.warn(
-        `Can not find lane opponent for ${account.summoner.name} as ${participant.role} ${participant.lane}`
-      );
       return 0;
     }
 
@@ -26,7 +23,6 @@ const precision: TrophyServer = {
       10,
       opponent.participantId
     );
-
     const creepsDiffAt10 = participantMinions - opponentMinions;
     return creepsDiffAt10 / 15;
   },

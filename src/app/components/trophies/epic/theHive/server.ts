@@ -9,10 +9,11 @@ const theHive: TrophyServer = {
     const hiveKills = events.filter(
       (event) =>
         event.type === 'CHAMPION_KILL' &&
-        event.assistingParticipantIds?.some(
+        event.assistingParticipantIds &&
+        event.assistingParticipantIds.some(
           (assister) => assister === participant.participantId
         ) &&
-        event.assistingParticipantIds?.length >= 4
+        event.assistingParticipantIds.length >= 4
     ) as ChampionKillEvent[];
     if (match.info.queueId === ARAM_HOWLING_ABYSS) {
       return hiveKills.length / 12;
