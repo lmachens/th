@@ -6,7 +6,7 @@ const stomp: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
     const requiredDuration =
-      match.info.queueId === ARAM_HOWLING_ABYSS ? 16 : 22;
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 16 * 1000 : 22 * 1000;
 
     return Number(
       match.info.gameDuration < requiredDuration * 60 && participant.win

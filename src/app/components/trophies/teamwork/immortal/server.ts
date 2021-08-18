@@ -6,7 +6,7 @@ const immortal: TrophyServer = {
   checkProgress: ({ match, participant }) => {
     return Number(
       participant.deaths < 1 &&
-        match.info.gameDuration >= 1500 &&
+        match.info.gameDuration >= 1500 * 1000 &&
         participant.win
     );
   },

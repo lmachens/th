@@ -9,7 +9,7 @@ const theFinalHour: TrophyServer = {
       (event) =>
         event.type === 'CHAMPION_KILL' &&
         event.killerId === participant.participantId &&
-        event.timestamp >= match.info.gameDuration * 1000 - 600000
+        event.timestamp >= match.info.gameDuration - 600000
     ).length;
 
     const requiredKills = match.info.queueId === ARAM_HOWLING_ABYSS ? 14 : 10;

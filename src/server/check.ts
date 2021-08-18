@@ -115,7 +115,7 @@ export const handlePostCheck = async (req: Request, res: Response) => {
         .end(`Game mode ${match.info.queueId} is not supported`);
     }
 
-    if (match.info.gameDuration < 300) {
+    if (match.info.gameDuration < 300 * 1000) {
       return res.json({
         trophyNames: [],
         unlockedIslandNames: [],

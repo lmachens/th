@@ -12,10 +12,10 @@ const gloriousEvolution: TrophyServer = {
     );
 
     const deaths = getParticipantDeaths(events, participant.participantId);
-    const gameLongEnough = match.info.gameDuration > 30 * 60;
+    const gameLongEnough = match.info.gameDuration > 30 * 60 * 1000;
     const mostDamage = participant.totalDamageDealtToChampions === maxDamage;
     const notDieAfter30Minutes = deaths.every(
-      (death) => death.timestamp < match.info.gameDuration * 1000 - 300000
+      (death) => death.timestamp < match.info.gameDuration - 300000
     );
     return Number(gameLongEnough && mostDamage && notDieAfter30Minutes);
   },

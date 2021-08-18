@@ -6,7 +6,7 @@ const theTortoise: TrophyServer = {
   ...base,
   checkProgress: ({ match, participant }) => {
     const requiredTimelimit =
-      match.info.queueId === ARAM_HOWLING_ABYSS ? 1200 : 1800;
+      match.info.queueId === ARAM_HOWLING_ABYSS ? 1200 * 1000 : 1800 * 1000;
     if (
       !participant.longestTimeSpentLiving &&
       match.info.gameDuration >= requiredTimelimit
