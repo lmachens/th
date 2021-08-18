@@ -256,24 +256,19 @@ export const getLaneOpponent = (
   const laneOpponents = participants.filter(
     (otherParticipant) =>
       otherParticipant.teamId !== participant.teamId &&
-      otherParticipant.lane === participant.lane &&
-      otherParticipant.role === participant.role
+      otherParticipant.teamPosition === participant.teamPosition
   );
-
   if (laneOpponents.length === 1) {
     return laneOpponents[0];
   }
-  if (laneOpponents.length === 2) {
-    // this can happen on botlane if the system doesnt understand who is adc and who is support
-    const laneOpponent1CS =
-      laneOpponents[0].totalMinionsKilled +
-      laneOpponents[0].neutralMinionsKilled;
-    const laneOpponent2CS =
-      laneOpponents[1].totalMinionsKilled +
-      laneOpponents[1].neutralMinionsKilled;
-    return laneOpponent1CS > laneOpponent2CS
-      ? laneOpponents[0]
-      : laneOpponents[1];
+  if (laneOpponents.length > 1) {
+    const sameIndividualPosition = laneOpponents.find(
+      (opponent) =>
+        opponent.individualPosition === participant.individualPosition
+    );
+    if (!sameIndividualPosition) {
+      return laneOpponents[0];
+    }
   }
   return null;
 };
