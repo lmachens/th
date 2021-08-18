@@ -7,7 +7,12 @@ const hubSkills: LevelClient = {
   ...base,
   Icon: SkillsIcon,
   Marker: SkillsMarker,
-  trophies: [trophies.careful, trophies.farmer, trophies.warrior],
+  trophies: [
+    trophies.careful,
+    trophies.farmer,
+    trophies.wanted,
+    trophies.warrior,
+  ],
 };
 
 export default hubSkills;

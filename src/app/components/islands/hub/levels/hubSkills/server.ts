@@ -5,7 +5,12 @@ import { skills1 } from '../../../skills/levels/server';
 
 const hubSkills: LevelServer = {
   ...base,
-  trophies: [trophies.careful, trophies.farmer, trophies.warrior],
+  trophies: [
+    trophies.careful,
+    trophies.farmer,
+    trophies.wanted,
+    trophies.warrior,
+  ],
   unlocksLevels: [skills1],
 };
 

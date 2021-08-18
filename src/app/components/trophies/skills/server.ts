@@ -34,4 +34,5 @@ export { default as thePolice } from './thePolice/server';
 export { default as theSpartan } from './theSpartan/server';
 export { default as theTiger } from './theTiger/server';
 export { default as unstoppable } from './unstoppable/server';
+export { default as wanted } from './wanted/server';
 export { default as warrior } from './warrior/server';
