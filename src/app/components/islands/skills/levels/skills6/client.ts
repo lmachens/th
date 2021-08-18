@@ -8,6 +8,7 @@ const skills6: LevelClient = {
   Icon: SkillsIcon,
   Marker: SkillsMarker,
   trophies: [
+    trophies.bountyKing,
     trophies.leagueOfDraven,
     trophies.tarzan,
     trophies.theBee,

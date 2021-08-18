@@ -5,6 +5,7 @@ import trophies from '../../../../trophies/server';
 const skills6: LevelServer = {
   ...base,
   trophies: [
+    trophies.bountyKing,
     trophies.leagueOfDraven,
     trophies.tarzan,
     trophies.theBee,

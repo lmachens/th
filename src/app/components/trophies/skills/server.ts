@@ -1,5 +1,6 @@
 export { default as appetizer } from './appetizer/server';
 export { default as billGates } from './billGates/server';
+export { default as bountyKing } from './bountyKing/server';
 export { default as careful } from './careful/server';
 export { default as carryMode } from './carryMode/server';
 export { default as criminal } from './criminal/server';

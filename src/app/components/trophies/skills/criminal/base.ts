@@ -4,7 +4,7 @@ const criminal: TrophyBase = {
   island: 'hub',
   name: 'criminal',
   level: 'skills4',
-  title: 'criminal',
+  title: 'Criminal',
   description: 'Have a bounty level of three or more',
   category: 'skills',
 };
