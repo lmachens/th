@@ -69,7 +69,9 @@ const TrophyModal = ({ trophy, onClose }: TrophyModalProps) => {
   );
   const { data: version } = useQuery('version', getRecentVersion);
 
-  const unlockedOrProgress = trophy.maxProgress ? 'Progress' : 'Unlocked';
+  const unlockedOrProgress = trophy.maxProgress
+    ? i18n('Progress')
+    : i18n('Unlocked');
   return (
     <Modal onClose={onClose}>
       <Container>
