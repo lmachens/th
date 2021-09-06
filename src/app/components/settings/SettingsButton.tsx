@@ -9,6 +9,7 @@ const SettingsButton = styled.button`
   cursor: pointer;
   overflow: hidden;
   width: 80px;
+  height: fit-content;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: center;

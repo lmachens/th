@@ -13,6 +13,7 @@ import TrophyStats from './TrophyStats';
 import Aram from '../icons/Aram';
 import TrophyModal from '../modals/TrophyModal';
 import { useMission } from '../../contexts/account/useMission';
+import { i18n } from '../../lib/i18n/i18n';
 
 interface ListItemProps {
   borderless?: boolean;
@@ -107,7 +108,7 @@ const TrophyListItem: FC<TrophyListItemProps> = ({
       </Grow>
       {trophy.aramSupport && (
         <Tooltip
-          text="This trophy is also achievable in ARAM"
+          text={i18n('This trophy is also achievable in ARAM')}
           placement="bottomRight"
         >
           <Aram />
@@ -115,7 +116,7 @@ const TrophyListItem: FC<TrophyListItemProps> = ({
       )}
       {!trophy.checkLive && (
         <Tooltip
-          text="This trophy doesn't have live-progress tracking"
+          text={i18n("This trophy doesn't have live-progress tracking")}
           placement="bottomRight"
         >
           <Flag onClick={(event) => event.stopPropagation()} />
@@ -123,7 +124,9 @@ const TrophyListItem: FC<TrophyListItemProps> = ({
       )}
       {missionTrophyNames.includes(trophy.name) && (
         <Tooltip
-          text="This trophy is part of this weeks mission. Mission trophies are shuffled every Sunday and are not part of the trophies count."
+          text={i18n(
+            'This trophy is part of this weeks mission. Mission trophies are shuffled every Sunday and are not part of the trophies count.'
+          )}
           placement="bottomRight"
         >
           <MissionStar />

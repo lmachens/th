@@ -1,3 +1,4 @@
+import { i18n } from '../i18n/i18n';
 import { getLocalStorageItem } from '../utils/storage';
 
 export const SR_DRAFT_PICK = 400;
@@ -14,11 +15,11 @@ export const SUPPORTED_QUEUE_IDS = [
 ];
 
 export const queues = {
-  [SR_DRAFT_PICK]: 'Draft',
-  [SR_RANKED_SOLO]: 'Solo/Duo',
-  [SR_BLIND_PICK]: 'Blind',
-  [SR_RANKED_FLEX]: 'Flex',
-  [ARAM_HOWLING_ABYSS]: 'ARAM',
+  [SR_DRAFT_PICK]: i18n('Draft'),
+  [SR_RANKED_SOLO]: i18n('Solo/Duo'),
+  [SR_BLIND_PICK]: i18n('Blind'),
+  [SR_RANKED_FLEX]: i18n('Flex'),
+  [ARAM_HOWLING_ABYSS]: i18n('ARAM'),
 };
 
 if (getLocalStorageItem('dev', false)) {

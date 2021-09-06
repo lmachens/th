@@ -140,14 +140,14 @@ const Match = ({ match }: Props) => {
       />
       <div>
         <GameDate isLoading={!match}>
-          {match?.gameCreatedAt.toLocaleDateString('en-US', {
+          {match?.gameCreatedAt.toLocaleDateString(undefined, {
             month: 'long',
             day: 'numeric',
           })}
         </GameDate>
         <GameDuration isLoading={!match}>
-          {match && `${Math.floor(match.gameDuration / 60)}m`}{' '}
-          {match && `${match.gameDuration % 60}s`}
+          {match && `${Math.floor(match.gameDuration / 60000)}m`}{' '}
+          {match && `${Math.round((match.gameDuration / 1000) % 60)}s`}
         </GameDuration>
       </div>
       {match && (

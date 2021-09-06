@@ -6,6 +6,7 @@ import { useTargetAccount } from '../../contexts/account';
 import MissionsModal from '../modals/MissionsModal';
 import { Tooltip } from '../tooltip';
 import { allTrophies } from './client';
+import { i18n } from '../../lib/i18n/i18n';
 
 const Container = styled.div`
   display: flex;
@@ -45,7 +46,7 @@ const Profile = () => {
         alt=""
       />
       <div>
-        <h4>{account?.summoner.name || 'Start LoL to Sign-In'}</h4>
+        <h4>{account?.summoner.name || i18n('Start LoL to Sign-In')}</h4>
         <p>
           <span>
             {account
@@ -53,15 +54,17 @@ const Profile = () => {
                   (trophy) => trophy.status === 'completed'
                 ).length
               : 0}
-            /{allTrophies.length} Trophies
+            /{allTrophies.length} {i18n('Trophies')}
           </span>{' '}
           |{' '}
           <Tooltip
-            text="Missions are random trophies which are shuffled every Sunday. They are not part of the trophies count."
+            text={i18n(
+              'Missions are random trophies which are shuffled every Sunday. They are not part of the trophies count.'
+            )}
             placement="top"
           >
             <ModalLink onClick={() => setShowMissions(true)}>
-              {account?.missionTrophiesCompleted || 0} Missions
+              {account?.missionTrophiesCompleted || 0} {i18n('Missions')}
             </ModalLink>
           </Tooltip>
         </p>

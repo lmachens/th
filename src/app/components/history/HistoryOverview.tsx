@@ -66,7 +66,7 @@ const Summary = styled.div`
 
 const ProgressContainer = styled.div`
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: 18px 1fr auto;
   background: #2b2a30;
   padding: 10px;
   font-size: 16px;
@@ -77,6 +77,12 @@ const ProgressContainer = styled.div`
   span {
     color: #77777a;
   }
+`;
+
+const IslandTitle = styled.div`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 const HistoryOverview = () => {
@@ -93,7 +99,7 @@ const HistoryOverview = () => {
         {progressList.map((item) => (
           <ProgressContainer key={item.category}>
             <TrophyProgress category={item.category} progress={100} max={100} />
-            <div>{item.title}</div>
+            <IslandTitle>{item.title}</IslandTitle>
             <div>
               {
                 completedTrophies.filter(

@@ -4,13 +4,13 @@ import { AccountProvider } from './contexts/account';
 import GlobalStyles from './styles/GlobalStyles';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import ErrorBoundary from './components/common/ErrorBoundary';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 
 const queryClient = new QueryClient();
 
 function App({ children }) {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <ErrorBoundary autoClose>
         <CacheProvider value={cache}>
           <GlobalStyles />
@@ -19,7 +19,7 @@ function App({ children }) {
           </QueryClientProvider>
         </CacheProvider>
       </ErrorBoundary>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
