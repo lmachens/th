@@ -17,7 +17,7 @@ const dragonHunter: TrophyServer = {
         teamIds.includes(event.killerId)
     ).length;
 
-    const trophyProgress = getTrophyProgress(account, 'energized');
+    const trophyProgress = getTrophyProgress(account, 'dragonHunter');
     return dragonKills / REQUIRED_DRAGONS + trophyProgress;
   },
 };
