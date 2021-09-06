@@ -1,3 +1,4 @@
+import { i18n } from '../../lib/i18n/i18n';
 import Filter, { FilterProps } from './Filter';
 import Path from './Path';
 
@@ -6,7 +7,7 @@ const Special = (props: Omit<FilterProps, 'title'>) => {
     props.selected && !props.disabled ? 'url(#paint0_linear)' : '#77777A';
 
   return (
-    <Filter title="Special" {...props}>
+    <Filter title={i18n('Special')} {...props}>
       <svg
         width="92"
         height="92"

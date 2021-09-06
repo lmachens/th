@@ -1,3 +1,4 @@
+import { i18n } from '../../lib/i18n/i18n';
 import Filter, { FilterProps } from './Filter';
 import Path from './Path';
 
@@ -7,7 +8,7 @@ const Combat = (props: Omit<FilterProps, 'title'>) => {
     props.selected && !props.disabled ? '#D6873E' : '#636365';
 
   return (
-    <Filter title="Combat" {...props}>
+    <Filter title={i18n('Combat')} {...props}>
       <svg
         width="92"
         height="92"
