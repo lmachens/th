@@ -6,7 +6,7 @@ const dragonSlayer: TrophyBase = {
   name: 'dragonSlayer',
   level: 'objectives1',
   title: i18n('Dragon Slayer'),
-  description: i18n('Kill four dragons (team achievement).'),
+  description: i18n('Kill four dragons (team achievement) in one match.'),
   category: 'objectives',
 };
 

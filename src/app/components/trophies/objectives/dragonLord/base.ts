@@ -6,7 +6,7 @@ const dragonLord: TrophyBase = {
   name: 'dragonLord',
   level: 'objectives2',
   title: i18n('Dragon Lord'),
-  description: i18n('Kill five dragons (team achievement).'),
+  description: i18n('Kill five dragons (team achievement) in one match.'),
   category: 'objectives',
 };
 
